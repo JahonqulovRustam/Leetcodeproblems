@@ -1,0 +1,22 @@
+public boolean numbersAscending(String s) {
+
+		String[] parts = s.split("\\D+");
+		int previous = -1;
+		
+		for (String part : parts) {
+			
+			if (part.isEmpty()) {
+				continue;
+			}
+			
+			int current = Integer.parseInt(part);
+			
+			if (current <= previous) {
+				return false;
+			}
+			
+			previous = current;
+		}
+		
+		return true;
+	}
