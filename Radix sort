@@ -1,0 +1,52 @@
+public class Radix {
+
+    public int getDigit(int num, int place) {
+        return (num / place) % 10;
+    }
+
+    public int mostDigits(int[] arr) {
+        int maxValue = 0;
+
+        for (int num : arr) {
+            if (num > maxValue) {
+                maxValue = num;
+            }
+        }
+
+        return (int) Math.floor(Math.log10(maxValue)) +1;
+    }
+
+    public int[] radixSort(int[] arr) {
+        int numDigits = mostDigits(arr);
+
+        for (int d = 0; d < numDigits; d++) {
+            int place = (int) Math.pow(10, d);
+            arr = countingSortByDigit(arr, place);
+        }
+
+        return arr;
+    }
+
+    public int[] countingSortByDigit(int[] arr, int place) {
+
+        int[] count = new int[10];
+
+        for (int num : arr) {
+            int digit = getDigit(num, place);
+            count[digit] ++;
+        }
+
+        for (int i = 1; i < 10; i++) {
+            count[i] += count[i -1];
+        }
+
+        int[] output = new int[arr.length];
+
+        for (int i = arr.length -1; i >= 0; i++) {
+            int digit = getDigit(arr[i], place);
+            output[--count[digit]] = arr[i];
+        }
+
+        return output;
+    }
+}
