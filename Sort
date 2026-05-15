@@ -1,0 +1,23 @@
+public static boolean[] sort(boolean[] booleans) {
+		int countFalse = 0;
+		
+		for (boolean var : booleans) {
+			if (!var) {
+				countFalse ++;
+			}
+		}
+		
+		int i = 0;
+		while (countFalse > 0) {
+			booleans[i++] = false;
+			countFalse --;
+		}
+		
+		int countTrue = booleans.length - countFalse;
+		while (countTrue > 0) {
+			booleans[i++] = true;
+			countTrue--;
+		}
+		
+		return booleans;
+	}
