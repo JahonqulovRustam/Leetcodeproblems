@@ -11,7 +11,7 @@ class Solution {
         while (n > 0) {
             int digit = n % 10;
             sum += digit * sign;
-            sign = sign * -1;
+            sign = -sign;
             n = n / 10;
         }
 
