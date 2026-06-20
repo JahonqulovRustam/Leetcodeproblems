@@ -17,8 +17,6 @@ class Solution {
 	
 	public boolean isPrefixAndSuffix(String word1, String word2) {
 
-		if (word2.startsWith(word1) && word2.endsWith(word1)) return true;
-		
-		return false;
+		return word2.startsWith(word1) && word2.endsWith(word1);
 	}
 }
