@@ -1,0 +1,26 @@
+public class Problem {
+
+    public String addStrings(String num1, String num2) {
+        String number1 = new StringBuilder(num1).reverse().toString();
+        String number2 = new StringBuilder(num2).reverse().toString();
+
+        int i = 0;
+        int carry = 0;
+
+        StringBuilder result = new StringBuilder();
+        while (i < number1.length() || i < number2.length() || carry != 0) {
+            int x = (i < number1.length() ? number1.charAt(i) - '0' : 0);
+            int y = (i < number2.length() ? number2.charAt(i) - '0' : 0);
+
+            int sum = x + y + carry;
+            carry = sum / 10;
+            int digit = sum % 10;
+
+            result.append(digit);
+
+            i++;
+        }
+
+        return result.reverse().toString();
+    }
+}
