@@ -1,0 +1,81 @@
+import java.util.*;
+
+public class FormatDate {
+	
+	public static List<String> formDate(String date) {
+		
+		if (date == null) {
+			throw new IllegalArgumentException("Date can't be null");
+		}
+		
+		int len = date.length();
+		
+		List<String> result = new ArrayList<>();
+		
+		if (len == 6) {
+			String d = "0" + date.charAt(0);
+			String m = "0" + date.charAt(1);
+			String y = date.substring(2);
+			
+			result.add(d + "." + m + "." + y);
+		} else if (len == 7) {
+			
+			String d1 = "0" + date.charAt(0);
+			String m1 = date.substring(1, 3);
+			String y = date.substring(3);
+			
+			result.add(d1 + "." + m1 + "." + y);
+			
+			String d2 = date.substring(0, 2);
+			String m2 = "0" + date.charAt(2);
+			
+			result.add(d2 + "." + m2 + "." + y);
+		} else if (len == 8) {
+			String d = date.substring(0, 2);
+			String m = date.substring(2, 4);
+			String y = date.substring(4);
+			
+			result.add(d + "." + m + "." + y);
+		}
+		
+		return result;
+	}
+	
+	public static boolean isValidDate(String date) {
+		int[] maxDays = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		
+		int day = Integer.parseInt(date.substring(0, 2));
+		int month = Integer.parseInt(date.substring(3, 5));
+		
+		if (month < 1 || month > 12) return false;
+		if (day < 1 || day > maxDays[month]) return false;
+		
+		return true;
+	}
+	
+	public static List<String> solve(String date) {
+		
+		List<String> candidates = formDate(date);
+		List<String> valid = new ArrayList<>();
+		
+		for (String d : candidates) {
+			if (isValidDate(d)) {
+				valid.add(d);
+			}
+		}
+		
+		return valid;
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		String date = "1142200";
+		
+		List<String> result = solve(date);
+		
+		for (String d : result) {
+			System.out.println(d);
+		}
+	}
+}
