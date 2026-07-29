@@ -1,0 +1,45 @@
+
+
+
+
+class Position {
+	
+	private int row, column;
+	
+	public Position(int row, int column) {
+		this.row = row;
+		this.column = column;
+	}
+	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getColumn() {
+		return column;
+	}
+}
+
+
+public class ChessCheckDetector {
+	
+	public boolean isSameRowOrColOrDiagonal(Position whiteQueen, Position blackKing) {
+	
+		return whiteQueen.getRow() == blackKing.getRow() ||
+				whiteQueen.getColumn() == blackKing.getColumn() ||
+				Math.abs(whiteQueen.getRow() - blackKing.getRow()) == Math.abs(whiteQueen.getColumn() - blackKing.getColumn());
+	}
+	
+	public boolean isAdjacent(Position whiteKing, Position blackKing) {
+		
+		return Math.abs(whiteKing.getRow() - blackKing.getRow()) <= 1 &&
+				Math.abs(whiteKing.getColumn() - blackKing.getColumn()) <= 1;
+	}
+	
+	public boolean isBlackKingInCheck(Position blackKing, Position whiteKing, Position whiteQueen) {
+	
+		return isSameRowOrColOrDiagonal(whiteQueen, blackKing) || isAdjacent(whiteKing, blackKing);
+	}
+	
+	
+}
