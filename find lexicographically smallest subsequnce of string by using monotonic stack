@@ -1,0 +1,48 @@
+
+
+import java.util.*;
+
+class Main{
+	
+	public static void main(String[] args) {
+		String s1 = "bcabc";
+		System.out.println("abc -> " + smallestSubsequence(s1));
+		String s2 = "cbacdcbc";
+		System.out.println("acdb -> " + smallestSubsequence(s2));
+	}
+	
+	public static String smallestSubsequence(String s) {
+		
+		int[] count = new int[26];
+		
+		for (char c : s.toCharArray()) {
+			count[c - 'a']++;
+		}
+		
+		boolean[] inStack = new boolean[26];
+		Deque<Character> letters = new ArrayDeque<>();
+		
+		for (char c : s.toCharArray()) {
+			
+			count[c - 'a']--;
+			
+			if (inStack[c - 'a']) {
+				continue;
+			}
+			
+			while (!letters.isEmpty() && letters.peek() > c && count[letters.peek() - 'a'] > 0) {
+				inStack[letters.pop() - 'a'] = false;
+			}
+			
+			letters.push(c);
+			inStack[c - 'a'] = true;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		while (!letters.isEmpty()) {
+			sb.append(letters.poll());
+		}
+		
+		return sb.reverse().toString();
+	}
+}
