@@ -1,0 +1,40 @@
+public class CountingSort {
+
+    public int[] sort(int[] array) {
+        int n = array.length;
+        if (n == 0) return new int[0];
+
+        int maxValue = Integer.MIN_VALUE;
+        int minValue = Integer.MAX_VALUE;
+        for (int num : array) {
+            if (num > maxValue) {
+                maxValue = num;
+            }
+            if (num < minValue) {
+                minValue = num;
+            }
+        }
+
+        int range = maxValue - minValue +1;
+        int[] countArr = new int[range];
+
+        for (int num : array) {
+            countArr[num - minValue] ++;
+        }
+
+        for (int i = 1; i < range; i++) {
+            countArr[i] += countArr[i -1];
+        }
+
+        int[] ans = new int[n];
+
+        for (int i = n -1; i >= 0; i++) {
+            int value = array[i];
+
+            ans[countArr[value - minValue] -1] = value;
+            countArr[value - minValue] --;
+        }
+
+        return ans;
+    }
+}
