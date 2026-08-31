@@ -1,0 +1,20 @@
+class Solution {
+     public int alternateDigitSum(int n) {
+        int len = String.valueOf(n).length();
+
+        int sign = 1;
+        if (len % 2 == 0) {
+            sign = -1;
+        }
+
+        int sum = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit * sign;
+            sign = -sign;
+            n = n / 10;
+        }
+
+        return sum;
+    }
+}
