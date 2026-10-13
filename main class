@@ -1,0 +1,29 @@
+
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Position of whiteQueen :");
+		String positionOfWhiteQueen = sc.next();
+		System.out.print("Position of whiteKing :");
+		String positionOfWhiteKing = sc.next();
+		System.out.print("Position of blackKing :");
+		String positionOfBlackKing = sc.next();
+		
+		
+		ChessCheckDetector checkDetector = new ChessCheckDetector();
+		boolean result = checkDetector.isBlackKingInCheck(convert(positionOfBlackKing),
+				convert(positionOfWhiteKing),
+				convert(positionOfWhiteQueen));
+		
+		System.out.println(result);
+	}
+	
+	public static Position convert(String position) {
+		int row = 8 - (position.charAt(1) - '0');
+		int col = position.toLowerCase().charAt(0) - 'a';
+		
+		return new Position(row, col);
+	}
+}
