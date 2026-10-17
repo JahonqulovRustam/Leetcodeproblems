@@ -1,0 +1,36 @@
+public void updateStudentById(int id) {
+        for (int i = 0; i < rows; i++) {
+            if ((int) students[i][0] == id) {
+                System.out.print("Studentni tahrirlovchi parametrini yozing: ");
+                String str = sc.next();
+
+                switch (str.toLowerCase()) {
+                    case "ismi" :
+                        System.out.print("Ismni kiriting: ");
+                        students[i][1] = sc.next();
+                        break;
+
+                    case "familiyasi" :
+                        System.out.print("Familiyasini kiriting: ");
+                        students[i][2] = sc.next();
+                        break;
+
+                    case "reytingi" :
+                        System.out.print("Reytingni kiriting: ");
+                        students[i][3] = sc.nextDouble();
+                        break;
+
+                    case "kursi" :
+                        System.out.print("Kursini kiriting: ");
+                        students[i][4] = sc.nextInt();
+                        break;
+
+                    default :
+                        System.out.println("Bunday parametr mavjud emas!");
+                }
+                return;
+            }
+        }
+
+        System.out.println("Bunday ID topilmadi");
+    }
