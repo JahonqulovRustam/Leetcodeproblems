@@ -1,0 +1,119 @@
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TargetSumSolverTest {
+	
+	@Test
+	void testSolve1() {
+		int[] nums = {1, 2, 3, 4};
+		int target = 5;
+		
+		Set<List<Integer>> expected = Set.of(List.of(1, 4), List.of(2, 3));
+		
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	@Test
+	void testSolve2() {
+		int[] nums = {7, 8, 9};
+		int target = 5;
+		
+		Set<List<Integer>> expected = Set.of();
+		
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	@Test
+	void testSolve3() {
+		int[] nums = {10};
+		int target = 10;
+		
+		Set<List<Integer>> expected = Set.of(List.of(10));
+		
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+		
+	}
+	
+	
+	@Test
+	void testSolve4() {
+		int[] nums = {};
+		int target = 0;
+		
+		Set<List<Integer>> expected = Set.of();
+		
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	@Test
+	void testSolve5() {
+		int[] nums = {-3, -2, -1, 1, 2, 3};
+		int target = 0;
+		
+		Set<List<Integer>> expected = Set.of(
+				List.of(-3, 3),
+				List.of(-2, 2),
+				List.of(-1, 1),
+				
+				List.of(-3, 1, 2),
+				List.of(-2, -1, 3),
+				
+				List.of(-3, -2, 2, 3),
+				List.of(-3, -1, 1, 3),
+				List.of(-2, -1, 1, 2),
+				
+				List.of(-3, -2, -1, 1, 2, 3)
+		);
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	@Test
+	void testSolve6() {
+		int[] nums = {2, 2, 2, 3, 3};
+		int target = 5;
+		
+		Set<List<Integer>> expected = Set.of(List.of(2,3));
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	
+	@Test
+	void testSolve7() {
+		int[] nums = {0, 0, 0};
+		int target = 0;
+		
+		Set<List<Integer>> expected = Set.of(List.of(0,0), List.of(0), List.of(0, 0, 0));
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	@Test
+	void testSolve8() {
+		int[] nums = {100, 200, 300, 400, 500};
+		int target = 700;
+		
+		Set<List<Integer>> expected = Set.of(List.of(300, 400), List.of(100, 200, 400), List.of(200, 500));
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	@Test
+	void testSolve9() {
+		int[] nums = {-5, 8, 12, -3, 7};
+		int target = 4;
+		
+		Set<List<Integer>> expected = Set.of(List.of(-5, -3, 12), List.of(-3, 7));
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+	
+	@Test
+	void testSolve10() {
+		int[] nums = {1, 2, 3, 4, 5};
+		int target = 6;
+		
+		Set<List<Integer>> expected = Set.of(List.of(1, 2, 3), List.of(2, 4), List.of(1, 5));
+		assertEquals(expected, TargetSumSolver.solve(nums, target));
+	}
+}
