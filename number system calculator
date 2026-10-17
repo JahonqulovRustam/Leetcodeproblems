@@ -1,0 +1,132 @@
+
+
+
+public class NumberSystemCalculator {
+	
+	public String decimalToBinary(String num) {
+		
+		return Integer.toBinaryString(Integer.parseInt(num));
+	}
+	
+	public String decimalToOctal(String num) {
+		
+		return Integer.toOctalString(Integer.parseInt(num));
+	}
+	
+	public String decimalToHex(String num) {
+		
+		return Integer.toHexString(Integer.parseInt(num));
+	}
+	
+	public String binaryToDecimal(String num) {
+		
+		return String.valueOf(Integer.parseInt(num, 2));
+	}
+	
+	public String binaryToOctal(String num) {
+		
+		return decimalToOctal(binaryToDecimal(num));
+	}
+	
+	public String binaryToHex(String num) {
+		
+		return decimalToHex(binaryToDecimal(num));
+	}
+	
+	public String octalToDecimal(String num) {
+		
+		return String.valueOf(Integer.parseInt(num, 8));
+	}
+	
+	public String octalToBinary(String num) {
+		
+		return decimalToBinary(octalToDecimal(num));
+	}
+	
+	public String octalToHex(String num) {
+		
+		return decimalToHex(octalToDecimal(num));
+	}
+	
+	public String hexToDecimal(String num) {
+		
+		return String.valueOf(Integer.parseInt(num, 16));
+	}
+	
+	public String hexToBinary(String num) {
+		
+		return decimalToBinary(hexToDecimal(num));
+	}
+	
+	public String hexToOctal(String num) {
+		
+		return decimalToOctal(hexToDecimal(num));
+	}
+
+public static void main(String[] args) {
+		
+		NumberSystemCalculator calculator = new NumberSystemCalculator();
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("=====================\n" +
+				"CONVERSION TABLE\n" +
+				"=====================");
+		
+		boolean cont = false;
+		
+		do {
+			System.out.println("\n" +
+					"Decimal to binary(1)\n" +
+					"Decimal to octal(2)\n" +
+					"Decimal to hexadecimal(3)\n" +
+					"Binary to decimal(4)\n" +
+					"Binary to octal(5)\n" +
+					"Binary to hexadecimal(6)\n" +
+					"Octal to decimal(7)\n" +
+					"Octal to binary(8)\n" +
+					"Octal to hexadecimal(9)\n" +
+					"Hexadecimal to decimal(10)\n" +
+					"Hexadecimal to binary(11)\n" +
+					"Hexadecimal to octal(12)");
+			
+			System.out.print("\nEnter number: ");
+			String num = sc.next();
+			System.out.print("Choose one: ");
+			int n = sc.nextInt();
+			
+			String result = null;
+			
+			switch (n) {
+				case 1: result = calculator.decimalToBinary(num); break;
+				case 2: result = calculator.decimalToOctal(num); break;
+				case 3: result = calculator.decimalToHex(num); break;
+				case 4: result = calculator.binaryToDecimal(num); break;
+				case 5: result = calculator.binaryToOctal(num); break;
+				case 6: result = calculator.binaryToHex(num); break;
+				case 7: result = calculator.octalToDecimal(num); break;
+				case 8: result = calculator.octalToBinary(num); break;
+				case 9: result = calculator.octalToHex(num); break;
+				case 10: result = calculator.hexToDecimal(num); break;
+				case 11: result = calculator.hexToBinary(num); break;
+				case 12: result = calculator.hexToOctal(num); break;
+				default:
+					System.out.println("Invalid choice!");
+			}
+			
+			if (result != null) {
+				System.out.println("Result: " + result);
+			}
+			
+			System.out.println("Continue(Yes/No)");
+			String r = sc.next();
+
+			switch(r.toUpperCase()) {
+				case "YES" : cont = true; break;
+				case "NO"  : cont = false; break;
+			}
+			
+		} while (cont);
+	}
+}
+
+
