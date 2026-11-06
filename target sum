@@ -1,0 +1,60 @@
+
+import java.util.*;
+
+public class KSumSolver {
+	
+	public static Set<List<Integer>> solve(int[] nums, int target, int k) {
+		int n = nums.length;
+		
+		Set<List<Integer>> result = new HashSet<>();
+		
+		for (int i = 0; i < (1 << n); i++) {
+			
+			if (Integer.bitCount(i) != k) continue;
+			
+			int sum = 0;
+			List<Integer> list = new ArrayList<>();
+			for (int j = 0; j < n; j++) {
+				if ((i & (1 << j)) != 0) {
+					sum += nums[j];
+					list.add(nums[j]);
+				}
+			}
+			
+			if (sum == target) {
+				Collections.sort(list);
+				result.add(list);
+			}
+		}
+		
+		return result;
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		int[] arr1 = {-1, 0, 1, 2, -1, -4};
+		assert solve(arr1, 0, 3).size() == 2;
+		
+		int[] arr2 = {1, 0, -1, 0, -2, 2};
+		assert solve(arr2, 0, 4).size() == 3;
+		
+		int[] arr3 = {1, 2, 3, 4, 5};
+		assert solve(arr3, 100, 3).isEmpty();
+		
+		int[] arr4 = {2, 2, 2, 2};
+		assert solve(arr4, 8, 4).size() == 1;
+		
+		int[] arr5 = {-5, -4, -3, -2, -1};
+		assert solve(arr5, -10, 3).size() == 2;
+		
+		int[] arr6 = {1, 2, 3, 4};
+		assert solve(arr6, 10, 4).size() == 1;
+		
+		int[] arr7 = {1, 2, 3, 4, 5, 6, 7};
+		assert solve(arr7, 15, 5).size() == 1;
+		
+		int[] arr8 = {1, 1, 1, 1, 1};
+		assert solve(arr8, 3, 3).size() == 1;
+	}
+}
