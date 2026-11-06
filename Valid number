@@ -1,0 +1,27 @@
+class Solution {
+
+    public boolean validDigit(int n, int x) {
+    if (n == 0) return false;
+
+		int[] digits = new int[6];
+		int i = 0;
+		int count = 0;
+
+		while (n > 0) {
+			int digit = n % 10;
+
+			if (digit == x) {
+				count++;
+			}
+			digits[i++] = digit;
+			n = n / 10;
+		}
+		
+		
+		if (digits[i-1] != x && count > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+}
