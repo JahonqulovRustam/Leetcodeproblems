@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Student {
+  
+  Scanner sc = new Scanner(System.in);
+  
+  Object[][] students = new Object[10][5];
+  
+  int rows = 0;
+  
+  public Object[][] addStudent(Object[][] students) {
+    
+    students[rows][0] = rows + 1;
+    
+    System.out.print("Ismi: ");
+    students[rows][1] = sc.next();
+    
+    System.out.print("Familiyasi: ");
+    students[rows][2] = sc.next();
+    
+    System.out.print("Reytingi: ");
+    students[rows][3] = sc.nextDouble();
+    
+    System.out.print("Kursi: ");
+    students[rows][4] = sc.nextInt();
+    
+    rows++;
+    
+    return students;
+  }  
+}
